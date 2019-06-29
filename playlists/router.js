@@ -25,7 +25,8 @@ router.get(
   }
 )
 
-router.post('/playlists',
+router.post(
+  '/playlists',
   (req, res, next) => {
     Playlists
       .create(req.body)
@@ -40,6 +41,25 @@ router.post('/playlists',
           .send(next(err)
           )
       )
+  }
+)
+
+router.delete(
+  '/playlists/:id',
+  (req, res, next) => {
+    const id = req.params.id
+    Playlists
+      .destroy(
+        { where: { id } }
+      )
+      .then(destroyedPlaylist => res
+        .status(200)
+        .json(destroyedPlaylist)
+      )
+      .catch(err => {
+        res.status(500)
+          .send(next(err))
+      })
   }
 )
 
