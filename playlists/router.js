@@ -12,6 +12,19 @@ router.get(
       .catch(err => next(err))
 )
 
+router.get(
+  '/playlists/:id',
+  (req, res, next) => {
+    const id = req.params.id
+
+    Playlists
+      .findByPk(id)
+      .then(playlist => res.send(playlist))
+      .catch(err => (next(err))
+      )
+  }
+)
+
 router.post('/playlists',
   (req, res, next) => {
     Playlists
