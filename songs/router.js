@@ -11,7 +11,9 @@ router.get(
   (req, res, next) => {
     Songs
       .findAll()
-      .then(songs => res.send(songs))
+      .then(songs => res
+        .status(200)
+        .send(songs))
       .catch(err => next(err))
   }
 )
@@ -29,8 +31,10 @@ router.get(
           .status(200)
           .send(songs)
       })
-      // console.log('SONGS ARE', songs)
-      .catch(err => next(err))
+      .catch(err =>
+        res
+          .status(404)
+          .next(err))
   }
 )
 
@@ -47,7 +51,7 @@ router.post(
       })
       .catch(err =>
         res
-          .status(500)
+          .status(422)
           .send(next(err)
           )
       )

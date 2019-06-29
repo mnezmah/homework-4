@@ -10,7 +10,7 @@ router.get(
   (req, res, next) =>
     Playlists
       .findAll()
-      .then(players => res.send(players))
+      .then(playlist => res.send(playlist))
       .catch(err => next(err))
 )
 
@@ -22,8 +22,13 @@ router.get(
 
     Playlists
       .findByPk(id)
-      .then(playlist => res.send(playlist))
-      .catch(err => (next(err))
+      .then(playlist => 
+        res
+        .status(200)
+        .send(playlist))
+      .catch(err => 
+        res.status(404)
+        .send(next(err))
       )
   }
 )
@@ -41,7 +46,7 @@ router.post(
       })
       .catch(err =>
         res
-          .status(500)
+          .status(422)
           .send(next(err)
           )
       )
@@ -62,7 +67,7 @@ router.delete(
         .json(destroyedPlaylist)
       )
       .catch(err => {
-        res.status(500)
+        res.status(404)
           .send(next(err))
       })
   }

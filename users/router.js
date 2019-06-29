@@ -20,7 +20,11 @@ router
             .status(200)
             .send(user)
         })
-        .catch(err => next(err))
+        .catch(err =>
+          res
+            .status(422)
+            .send(next(err))
+        )
     }
   )
 

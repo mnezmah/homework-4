@@ -19,7 +19,7 @@ function auth(req, res, next) {
       res
         .status(400)
         .send({
-          message: `Error ${error.name}: ${error.message}`,
+          message: `Error ${error.name}: ${error.message}`
         })
     }
   }
