@@ -9,6 +9,7 @@ router
     (req, res) => {
       const email = req.body.email
       const password = req.body.password
+      
       if (!email || !password) {
         res.status(400).send({
           message: 'Please supply a valid email and password'
