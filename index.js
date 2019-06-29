@@ -5,7 +5,6 @@ const songsRouter = require('./songs/router')
 const authRouter = require('./auth/router')
 const userRouter = require('./users/router')
 
-
 const app = express()
 const jsonParser = bodyParser.json()
 

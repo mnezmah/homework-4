@@ -1,11 +1,13 @@
 const { Router } = require('express')
 const Songs = require('./model')
 const Playlists = require('../playlists/model')
+const auth = require('../auth/middleware')
 
 const router = new Router()
 
 router.get(
   '/songs',
+  auth,
   (req, res, next) => {
     Songs
       .findAll()
@@ -16,6 +18,7 @@ router.get(
 
 router.get(
   '/playlists/:id/songs',
+  auth,
   (req, res, next) => {
     console.log('THIS IS RES', res)
     const id = req.params.id
@@ -33,6 +36,7 @@ router.get(
 
 router.post(
   '/songs',
+  atuh,
   (req, res, next) => {
     Songs
       .create(req.body)

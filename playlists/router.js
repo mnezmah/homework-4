@@ -1,10 +1,12 @@
 const { Router } = require('express')
 const Playlists = require('./model')
+const auth = require('../auth/middleware')
 
 const router = new Router()
 
 router.get(
   '/playlists',
+  auth, 
   (req, res, next) =>
     Playlists
       .findAll()
@@ -14,6 +16,7 @@ router.get(
 
 router.get(
   '/playlists/:id',
+  auth, 
   (req, res, next) => {
     const id = req.params.id
 
@@ -27,6 +30,7 @@ router.get(
 
 router.post(
   '/playlists',
+  auth, 
   (req, res, next) => {
     Playlists
       .create(req.body)
@@ -46,6 +50,7 @@ router.post(
 
 router.delete(
   '/playlists/:id',
+  auth,
   (req, res, next) => {
     const id = req.params.id
     Playlists
