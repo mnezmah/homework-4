@@ -1,4 +1,4 @@
-const sequelize = require('sequelize')
+const Sequelize = require('sequelize')
 const db = require('../db')
 const Playlists = require('../playlists/model')
 
@@ -6,13 +6,13 @@ const Songs = db.define(
   'songs',
   {
     title: {
-      type: sequelize.STRING
+      type: Sequelize.STRING
     },
     artist: {
-      type: sequelize.STRING
+      type: Sequelize.STRING
     },
     album: {
-      type: sequelize.STRING
+      type: Sequelize.STRING
     }
   }
 )
