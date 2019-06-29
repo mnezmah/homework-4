@@ -1,4 +1,4 @@
-const sequelize = require('express')
+const sequelize = require('sequelize')
 const db = require('../db')
 const Playlists = require('../playlists/model')
 
@@ -12,11 +12,11 @@ const Songs = db.define(
       type: sequelize.STRING
     },
     album: {
-      type: sequeliza.STRING
+      type: sequelize.STRING
     }
   }
 )
 
-Songs.belongsTp(Playlists)
+Songs.belongsTo(Playlists)
 
 module.exports = Songs
