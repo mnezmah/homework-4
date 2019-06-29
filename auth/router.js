@@ -39,19 +39,23 @@ router
                 .send({ message: 'Incorrect Password ' })
             }
           })
+          .catch(err => {
+            console.error(err)
+            res
+              .status(500)
+              .send({
+                message: 'something wen wrong'
+              })
+          })
       }
     })
-  .catch(err => {
-    console.error(err)
-    res.status(500)
-      .send({
-        message: 'something wen wrong'
-      })
-  })
 
-  router.get('/secret-endpoint', auth, (req, res) => {
+router.get(
+  '/secret-endpoint',
+  (req, res) => {
+    console.log('REQ OF SECRET', req)
     res.send({
-      message: `Thanks for visiting the secret endpoint ${req.user.mail}.`
+      message: `Thanks for visiting the secret endpoint ${req.user.email}.`
     })
   })
 

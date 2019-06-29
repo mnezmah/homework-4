@@ -1,4 +1,5 @@
 const User = require('../users/model')
+const { toJWT, toData } = require('./jwt')
 
 function auth(req, res, next) {
   const auth = req.headers.authorization && req.headers.authorization.split(' ')
@@ -6,7 +7,7 @@ function auth(req, res, next) {
     try {
       const data = toData(auth[1])
       User
-        .findById(data.userId)
+        .findByPk(data.userId)
         .then(user => {
           if (!user) return next('User does not exist')
 

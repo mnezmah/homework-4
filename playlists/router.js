@@ -6,7 +6,7 @@ const router = new Router()
 
 router.get(
   '/playlists',
-  auth, 
+  auth,
   (req, res, next) =>
     Playlists
       .findAll()
@@ -16,26 +16,27 @@ router.get(
 
 router.get(
   '/playlists/:id',
-  auth, 
+  auth,
   (req, res, next) => {
     const id = req.params.id
 
     Playlists
       .findByPk(id)
-      .then(playlist => 
+      .then(playlist =>
         res
-        .status(200)
-        .send(playlist))
-      .catch(err => 
+          .status(200)
+          .send(playlist)
+      )
+      .catch(err =>
         res.status(404)
-        .send(next(err))
+          .send(next(err))
       )
   }
 )
 
 router.post(
   '/playlists',
-  auth, 
+  auth,
   (req, res, next) => {
     Playlists
       .create(req.body)
@@ -67,7 +68,8 @@ router.delete(
         .json(destroyedPlaylist)
       )
       .catch(err => {
-        res.status(404)
+        res
+          .status(404)
           .send(next(err))
       })
   }

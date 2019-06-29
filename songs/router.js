@@ -19,13 +19,34 @@ router.get(
 )
 
 router.get(
+  '/songs/:id',
+  auth,
+  (req, res, next) => {
+    const id = req.params.id
+
+    Songs
+      .findByPk(id)
+      .then(song =>
+        res
+          .status(200)
+          .send(song)
+      )
+      .catch(err =>
+        res.status(404)
+          .send(next(err))
+      )
+  }
+)
+
+router.get(
   '/playlists/:id/songs',
   auth,
   (req, res, next) => {
     console.log('THIS IS RES', res)
     const id = req.params.id
+
     Songs
-      .findbyPk(id, { include: [Playlists] })
+      .findByPk(id, { include: [Playlists] })
       .then(songs => {
         res
           .status(200)
@@ -34,13 +55,14 @@ router.get(
       .catch(err =>
         res
           .status(404)
-          .next(err))
+          .send(next(err))
+      )
   }
 )
 
 router.post(
   '/songs',
-  atuh,
+  auth,
   (req, res, next) => {
     Songs
       .create(req.body)
@@ -55,6 +77,27 @@ router.post(
           .send(next(err)
           )
       )
+  }
+)
+
+router.delete(
+  '/songs/:id',
+  auth,
+  (req, res, next) => {
+    const id = req.params.id
+    Songs
+      .destroy(
+        { where: { id } }
+      )
+      .then(deletedsong => res
+        .status(200)
+        .json(deletedsong)
+      )
+      .catch(err => {
+        res
+          .status(404)
+          .send(next(err))
+      })
   }
 )
 
