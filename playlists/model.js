@@ -1,7 +1,7 @@
 const sequelize = require('sequelize')
 const db = require('../db')
 
-const playlists = db.define(
+const Playlists = db.define(
   'playlists',
   {
     name: {
@@ -10,4 +10,4 @@ const playlists = db.define(
   }
 )
 
-module.exports = playlists
+module.exports = Playlists
