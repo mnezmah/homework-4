@@ -8,7 +8,7 @@
 
 3. open your browser on localhost:4000
 
-4. install (HTTPie)[httpie.org]
+4. install [httpie.org](HTTPie)
 
 4. create an user :
 `http post :4000/user email=<your mail> password=<your password>`
