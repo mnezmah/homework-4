@@ -2,6 +2,7 @@ const { Router } = require('express')
 const { toJWT, toData } = require('./jwt')
 const User = require('../users/model')
 const bcrypt = require('bcrypt')
+const auth = require('./middleware')
 
 const router = new Router()
 
@@ -46,6 +47,12 @@ router
       .send({
         message: 'something wen wrong'
       })
+  })
+
+  router.get('/secret-endpoint', auth, (req, res) => {
+    res.send({
+      message: `Thanks for visiting the secret endpoint ${req.user.mail}.`
+    })
   })
 
 module.exports = router
